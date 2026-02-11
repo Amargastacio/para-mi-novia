@@ -3,84 +3,33 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Para ti ❤️</title>
+  <title>Para mi amor 💖</title>
 
   <style>
     * {
       box-sizing: border-box;
-      font-family: "Comic Sans MS", cursive;
     }
 
     body {
       margin: 0;
-      background: linear-gradient(135deg, #ffc0cb, #ffe6f0);
+      min-height: 100vh;
       display: flex;
       justify-content: center;
       align-items: center;
-      height: 100vh;
+      background: linear-gradient(135deg, #ffc1d9, #ffd6e8);
+      font-family: 'Arial', sans-serif;
       overflow: hidden;
     }
 
     .card {
-      background: #fff0f5;
+      background: #fff0f6;
+      border-radius: 20px;
       padding: 20px;
-      border-radius: 20px;
       text-align: center;
-      box-shadow: 0 10px 30px rgba(0,0,0,.15);
       width: 90%;
-      max-width: 380px;
+      max-width: 360px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.15);
       animation: fadeIn 1.5s ease;
-    }
-
-    h1 {
-      color: #ff4d6d;
-      margin-bottom: 10px;
-    }
-
-    p {
-      font-size: 1.1em;
-      color: #444;
-    }
-
-    img {
-      width: 160px;
-      margin: 10px 0;
-      animation: float 3s ease-in-out infinite;
-    }
-
-    .buttons {
-      margin-top: 15px;
-      display: flex;
-      justify-content: space-around;
-    }
-
-    button {
-      border: none;
-      padding: 12px 20px;
-      border-radius: 20px;
-      font-size: 1em;
-      cursor: pointer;
-      transition: 0.2s;
-    }
-
-    #yes {
-      background: #ff4d6d;
-      color: white;
-    }
-
-    #no {
-      background: #bbb;
-    }
-
-    #no:hover {
-      position: absolute;
-      left: calc(10% + 80% * random());
-      top: calc(10% + 80% * random());
-    }
-
-    @keyframes float {
-      0%,100% { transform: translateY(0); }
-      50% { transform: translateY(-10px); }
     }
 
     @keyframes fadeIn {
@@ -88,22 +37,81 @@
       to { opacity: 1; transform: scale(1); }
     }
 
+    .card img {
+      width: 180px;
+      max-width: 70%;
+      margin-bottom: 15px;
+    }
+
+    h1 {
+      color: #ff4d88;
+      font-size: 1.5em;
+      margin-bottom: 15px;
+    }
+
+    .buttons {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin-top: 10px;
+    }
+
+    button {
+      padding: 10px 20px;
+      border: none;
+      border-radius: 12px;
+      font-size: 1em;
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+
+    #yesBtn {
+      background: #ff4d88;
+      color: white;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    }
+
+    #noBtn {
+      background: #ffc1d9;
+      color: #ff4d88;
+      position: relative;
+    }
+
+    .message {
+      display: none;
+      font-size: 1.4em;
+      color: #ff4d88;
+      margin-top: 15px;
+      animation: fadeIn 1s ease;
+    }
+
     .hearts {
       position: fixed;
-      inset: 0;
+      width: 100%;
+      height: 100%;
       pointer-events: none;
       overflow: hidden;
+      top: 0;
+      left: 0;
     }
 
     .heart {
       position: absolute;
-      color: #ff4d6d;
-      animation: fall linear infinite;
+      color: #ff4d88;
+      font-size: 20px;
+      animation: float 5s linear infinite;
+      opacity: 0.8;
     }
 
-    @keyframes fall {
-      from { transform: translateY(-10vh); }
-      to { transform: translateY(110vh); }
+    @keyframes float {
+      from {
+        transform: translateY(100vh) scale(1);
+        opacity: 1;
+      }
+      to {
+        transform: translateY(-10vh) scale(1.5);
+        opacity: 0;
+      }
     }
   </style>
 </head>
@@ -111,58 +119,64 @@
 <body>
 
   <audio id="music" autoplay loop>
-    <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_4f8e1a46b1.mp3?filename=romantic-piano-112191.mp3" type="audio/mpeg">
+    <source src="https://cdn.pixabay.com/download/audio/2022/10/11/audio_30c6b63cbb.mp3?filename=romantic-piano-112191.mp3" type="audio/mpeg">
   </audio>
 
   <div class="card">
-    <h1>💖 Tengo algo importante 💖</h1>
-    <p>Desde que llegaste a mi vida todo es más bonito...</p>
+    <img src="https://i.imgur.com/0y8Ftya.png" alt="Snoopy">
 
-    <img src="https://upload.wikimedia.org/wikipedia/en/5/53/Snoopy_Peanuts.png" alt="Snoopy">
-
-    <p>¿Quieres ser mi novia para siempre? 🥺💕</p>
+    <h1>¿Quieres ser mi San Valentín? 💘</h1>
 
     <div class="buttons">
-      <button id="yes">Sí 💘</button>
-      <button id="no">No 🙈</button>
+      <button id="yesBtn">Sí 💖</button>
+      <button id="noBtn">No 😢</button>
+    </div>
+
+    <div class="message" id="loveMessage">
+      Sabía que dirías que sí 💕<br>
+      Te amo muchísimo 💖
     </div>
   </div>
 
   <div class="hearts" id="hearts"></div>
 
   <script>
-    const noBtn = document.getElementById("no");
+    const noBtn = document.getElementById("noBtn");
+    const yesBtn = document.getElementById("yesBtn");
+    const msg = document.getElementById("loveMessage");
+    const hearts = document.getElementById("hearts");
 
-    noBtn.addEventListener("mouseover", () => {
-      const x = Math.random() * (window.innerWidth - 100);
-      const y = Math.random() * (window.innerHeight - 50);
-      noBtn.style.left = x + "px";
-      noBtn.style.top = y + "px";
-    });
+    noBtn.addEventListener("mouseenter", moveButton);
+    noBtn.addEventListener("click", moveButton);
 
-    document.getElementById("yes").onclick = () => {
-      document.body.innerHTML = `
-        <div class="card">
-          <h1>💖 Sabía que dirías que sí 💖</h1>
-          <img src="https://upload.wikimedia.org/wikipedia/en/5/53/Snoopy_Peanuts.png">
-          <p>Eres lo mejor que me ha pasado. Te amo muchísimo ❤️</p>
-        </div>
-      `;
-    };
-
-    function createHeart() {
-      const heart = document.createElement("div");
-      heart.className = "heart";
-      heart.innerHTML = "❤️";
-      heart.style.left = Math.random() * 100 + "vw";
-      heart.style.fontSize = Math.random() * 20 + 15 + "px";
-      heart.style.animationDuration = Math.random() * 3 + 3 + "s";
-      document.getElementById("hearts").appendChild(heart);
-
-      setTimeout(() => heart.remove(), 6000);
+    function moveButton() {
+      const x = Math.random() * 200 - 100;
+      const y = Math.random() * 150 - 75;
+      noBtn.style.transform = `translate(${x}px, ${y}px)`;
     }
 
-    setInterval(createHeart, 300);
+    yesBtn.addEventListener("click", () => {
+      msg.style.display = "block";
+      createHearts();
+    });
+
+    function createHearts() {
+      for (let i = 0; i < 30; i++) {
+        const heart = document.createElement("div");
+        heart.className = "heart";
+        heart.innerHTML = "💖";
+        heart.style.left = Math.random() * 100 + "vw";
+        heart.style.animationDuration = (Math.random() * 3 + 2) + "s";
+        hearts.appendChild(heart);
+
+        setTimeout(() => heart.remove(), 5000);
+      }
+    }
+
+    window.onload = () => {
+      const audio = document.getElementById("music");
+      audio.play().catch(() => {});
+    };
   </script>
 
 </body>
