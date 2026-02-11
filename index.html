@@ -130,13 +130,9 @@
 </head>
 <body>
 
-  <audio id="music" loop preload="auto" playsinline>
+  <audio id="music" autoplay loop preload="auto">
     <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_4f8e1a46b1.mp3?filename=romantic-piano-112191.mp3" type="audio/mpeg">
   </audio>
-
-  <div id="tapToPlay" style="position:fixed;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(255,182,201,0.9);z-index:9999;">
-    <button id="playBtn" style="background:#ff4f86;border:none;color:#fff;padding:16px 26px;border-radius:16px;font-size:20px;box-shadow:0 10px 25px rgba(0,0,0,.25);cursor:pointer;">Iniciar música 🎵</button>
-  </div>
 
   <div id="tapToPlay" style="position:fixed;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(255,182,201,0.85);z-index:9999;backdrop-filter:blur(3px);">
     <button style="background:#ff4f86;border:none;color:#fff;padding:14px 22px;border-radius:14px;font-size:18px;box-shadow:0 10px 25px rgba(0,0,0,.25);cursor:pointer;">Toca para iniciar música 🎵</button>
@@ -197,10 +193,7 @@
       heart.style.fontSize = (14 + Math.random() * 24) + 'px';
       bg.appendChild(heart);
     }
-      const audio = document.getElementById('music');
-    const overlay = document.getElementById('tapToPlay');
-
-    async function startMusic() {
+          async function startMusic() {
       try {
         await audio.play();
         overlay.style.display = 'none';
