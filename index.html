@@ -6,10 +6,6 @@
   <title>Para mi amor 💖</title>
 
   <style>
-    * {
-      box-sizing: border-box;
-    }
-
     body {
       margin: 0;
       min-height: 100vh;
@@ -23,13 +19,13 @@
 
     .card {
       background: #fff0f6;
-      border-radius: 20px;
-      padding: 20px;
+      border-radius: 25px;
+      padding: 25px 20px;
       text-align: center;
       width: 90%;
       max-width: 360px;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.15);
-      animation: fadeIn 1.5s ease;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+      animation: fadeIn 1.2s ease;
     }
 
     @keyframes fadeIn {
@@ -37,10 +33,15 @@
       to { opacity: 1; transform: scale(1); }
     }
 
-    .card img {
-      width: 180px;
-      max-width: 70%;
-      margin-bottom: 15px;
+    .heart-big {
+      font-size: 70px;
+      animation: pulse 1.5s infinite;
+      margin-bottom: 10px;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.15); }
     }
 
     h1 {
@@ -57,9 +58,9 @@
     }
 
     button {
-      padding: 10px 20px;
+      padding: 10px 22px;
       border: none;
-      border-radius: 12px;
+      border-radius: 14px;
       font-size: 1em;
       cursor: pointer;
       transition: transform 0.2s;
@@ -87,31 +88,21 @@
 
     .hearts {
       position: fixed;
-      width: 100%;
-      height: 100%;
+      inset: 0;
       pointer-events: none;
       overflow: hidden;
-      top: 0;
-      left: 0;
     }
 
     .heart {
       position: absolute;
       color: #ff4d88;
-      font-size: 20px;
-      animation: float 5s linear infinite;
-      opacity: 0.8;
+      font-size: 22px;
+      animation: fall 5s linear infinite;
     }
 
-    @keyframes float {
-      from {
-        transform: translateY(100vh) scale(1);
-        opacity: 1;
-      }
-      to {
-        transform: translateY(-10vh) scale(1.5);
-        opacity: 0;
-      }
+    @keyframes fall {
+      from { transform: translateY(-10vh); opacity: 1; }
+      to { transform: translateY(110vh); opacity: 0; }
     }
   </style>
 </head>
@@ -123,18 +114,18 @@
   </audio>
 
   <div class="card">
-    <img src="https://i.imgur.com/0y8Ftya.png" alt="Snoopy">
+    <div class="heart-big">💖</div>
 
     <h1>¿Quieres ser mi San Valentín? 💘</h1>
 
     <div class="buttons">
-      <button id="yesBtn">Sí 💖</button>
+      <button id="yesBtn">Sí 💕</button>
       <button id="noBtn">No 😢</button>
     </div>
 
     <div class="message" id="loveMessage">
-      Sabía que dirías que sí 💕<br>
-      Te amo muchísimo 💖
+      Sabía que dirías que sí 💖<br>
+      Te amo muchísimo 💘
     </div>
   </div>
 
@@ -161,15 +152,16 @@
     });
 
     function createHearts() {
-      for (let i = 0; i < 30; i++) {
+      for (let i = 0; i < 40; i++) {
         const heart = document.createElement("div");
         heart.className = "heart";
         heart.innerHTML = "💖";
         heart.style.left = Math.random() * 100 + "vw";
-        heart.style.animationDuration = (Math.random() * 3 + 2) + "s";
+        heart.style.fontSize = (Math.random() * 15 + 15) + "px";
+        heart.style.animationDuration = (Math.random() * 3 + 3) + "s";
         hearts.appendChild(heart);
 
-        setTimeout(() => heart.remove(), 5000);
+        setTimeout(() => heart.remove(), 6000);
       }
     }
 
