@@ -3,192 +3,166 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Para mi amor 💖</title>
+  <title>Para ti ❤️</title>
+
   <style>
+    * {
+      box-sizing: border-box;
+      font-family: "Comic Sans MS", cursive;
+    }
+
     body {
       margin: 0;
-      min-height: 100vh;
+      background: linear-gradient(135deg, #ffc0cb, #ffe6f0);
       display: flex;
       justify-content: center;
       align-items: center;
-      background: linear-gradient(135deg, #ffe6ef, #ffd1e3);
-      font-family: 'Arial', sans-serif;
+      height: 100vh;
       overflow: hidden;
     }
 
-    .window {
-      background: #ffb6c9;
-      border: 4px solid #ff7aa2;
-      border-radius: 14px;
-      width: 340px;
-      padding: 10px;
-      box-shadow: 0 15px 35px rgba(0,0,0,0.25);
-      position: relative;
-      animation: pop 0.6s ease;
-    }
-
-    @keyframes pop {
-      0% { transform: scale(0.5); opacity: 0; }
-      100% { transform: scale(1); opacity: 1; }
-    }
-
-    .title-bar {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      background: #ff7aa2;
-      padding: 6px 10px;
-      border-radius: 10px;
-      color: white;
-      font-weight: bold;
-      font-size: 14px;
-    }
-
-    .hearts { letter-spacing: 4px; }
-
-    .content {
+    .card {
+      background: #fff0f5;
+      padding: 20px;
+      border-radius: 20px;
       text-align: center;
-      padding: 20px 10px 10px;
-      color: #7a003c;
-      font-size: 18px;
+      box-shadow: 0 10px 30px rgba(0,0,0,.15);
+      width: 90%;
+      max-width: 380px;
+      animation: fadeIn 1.5s ease;
     }
 
-    .snoopy {
-      font-size: 72px;
+    h1 {
+      color: #ff4d6d;
+      margin-bottom: 10px;
+    }
+
+    p {
+      font-size: 1.1em;
+      color: #444;
+    }
+
+    img {
+      width: 160px;
       margin: 10px 0;
-      animation: bounce 1.6s infinite;
-    }
-
-    @keyframes bounce {
-      0%,100% { transform: translateY(0); }
-      50% { transform: translateY(-12px); }
+      animation: float 3s ease-in-out infinite;
     }
 
     .buttons {
+      margin-top: 15px;
       display: flex;
       justify-content: space-around;
-      margin-top: 15px;
     }
 
     button {
-      background: #ff7aa2;
       border: none;
-      padding: 10px 20px;
-      border-radius: 10px;
-      color: white;
-      font-size: 16px;
+      padding: 12px 20px;
+      border-radius: 20px;
+      font-size: 1em;
       cursor: pointer;
-      transition: transform 0.2s, background 0.2s;
+      transition: 0.2s;
     }
 
-    button:hover { transform: scale(1.1); background: #ff4f86; }
-
-    .no-btn { position: relative; }
-
-    .message {
-      display: none;
-      position: fixed;
-      inset: 0;
-      background: linear-gradient(135deg, #ff4f86, #ff9db8);
-      justify-content: center;
-      align-items: center;
-      text-align: center;
+    #yes {
+      background: #ff4d6d;
       color: white;
-      font-size: 26px;
-      flex-direction: column;
-      padding: 20px;
-      animation: fadeIn 0.8s ease;
+    }
+
+    #no {
+      background: #bbb;
+    }
+
+    #no:hover {
+      position: absolute;
+      left: calc(10% + 80% * random());
+      top: calc(10% + 80% * random());
+    }
+
+    @keyframes float {
+      0%,100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
     }
 
     @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
+      from { opacity: 0; transform: scale(0.9); }
+      to { opacity: 1; transform: scale(1); }
     }
 
-    .message span { font-size: 64px; margin-top: 10px; }
-
-    .bg-hearts {
-      position: absolute;
+    .hearts {
+      position: fixed;
       inset: 0;
       pointer-events: none;
       overflow: hidden;
     }
 
-    .bg-hearts span {
+    .heart {
       position: absolute;
-      color: #ff7aa2;
-      font-size: 20px;
-      animation: float 7s linear infinite;
-      opacity: 0.7;
+      color: #ff4d6d;
+      animation: fall linear infinite;
     }
 
-    @keyframes float {
-      0% { transform: translateY(100vh); }
-      100% { transform: translateY(-10vh); }
+    @keyframes fall {
+      from { transform: translateY(-10vh); }
+      to { transform: translateY(110vh); }
     }
   </style>
 </head>
+
 <body>
 
   <audio id="music" autoplay loop>
     <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_4f8e1a46b1.mp3?filename=romantic-piano-112191.mp3" type="audio/mpeg">
   </audio>
 
-  <div class="bg-hearts" id="bg"></div>
+  <div class="card">
+    <h1>💖 Tengo algo importante 💖</h1>
+    <p>Desde que llegaste a mi vida todo es más bonito...</p>
 
-  <div class="window">
-    <div class="title-bar">
-      <span>LOVE</span>
-      <span class="hearts">♥ ♥ ♥</span>
-    </div>
+    <img src="https://upload.wikimedia.org/wikipedia/en/5/53/Snoopy_Peanuts.png" alt="Snoopy">
 
-    <div class="content">
-      <p>¿Quieres ser mi San Valentín? 💕</p>
-      <div class="snoopy">🐶</div>
+    <p>¿Quieres ser mi novia para siempre? 🥺💕</p>
 
-      <div class="buttons">
-        <button onclick="yesClick()">Sí 💖</button>
-        <button class="no-btn" id="noBtn">No 😢</button>
-      </div>
+    <div class="buttons">
+      <button id="yes">Sí 💘</button>
+      <button id="no">No 🙈</button>
     </div>
   </div>
 
-  <div class="message" id="message">
-    <div>💖 Sabía que dirías que sí 💖</div>
-    <p style="max-width:600px; margin-top:15px;">
-      Eres la persona más especial de mi vida. Gracias por existir, por hacerme sonreír y por llenar mis días de amor. Te amo muchísimo y prometo hacerte feliz siempre. 💘
-    </p>
-    <span>🥰✨</span>
-  </div>
+  <div class="hearts" id="hearts"></div>
 
   <script>
-    const noBtn = document.getElementById('noBtn');
-    let scale = 1;
+    const noBtn = document.getElementById("no");
 
-    noBtn.addEventListener('mouseover', () => {
-      const x = Math.random() * (window.innerWidth - 120);
-      const y = Math.random() * (window.innerHeight - 60);
-      scale -= 0.1;
-      if (scale < 0.3) scale = 0.3;
-      noBtn.style.position = 'fixed';
-      noBtn.style.left = x + 'px';
-      noBtn.style.top = y + 'px';
-      noBtn.style.transform = `scale(${scale})`;
+    noBtn.addEventListener("mouseover", () => {
+      const x = Math.random() * (window.innerWidth - 100);
+      const y = Math.random() * (window.innerHeight - 50);
+      noBtn.style.left = x + "px";
+      noBtn.style.top = y + "px";
     });
 
-    function yesClick() {
-      document.getElementById('message').style.display = 'flex';
+    document.getElementById("yes").onclick = () => {
+      document.body.innerHTML = `
+        <div class="card">
+          <h1>💖 Sabía que dirías que sí 💖</h1>
+          <img src="https://upload.wikimedia.org/wikipedia/en/5/53/Snoopy_Peanuts.png">
+          <p>Eres lo mejor que me ha pasado. Te amo muchísimo ❤️</p>
+        </div>
+      `;
+    };
+
+    function createHeart() {
+      const heart = document.createElement("div");
+      heart.className = "heart";
+      heart.innerHTML = "❤️";
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.fontSize = Math.random() * 20 + 15 + "px";
+      heart.style.animationDuration = Math.random() * 3 + 3 + "s";
+      document.getElementById("hearts").appendChild(heart);
+
+      setTimeout(() => heart.remove(), 6000);
     }
 
-    const bg = document.getElementById('bg');
-    for (let i = 0; i < 40; i++) {
-      const heart = document.createElement('span');
-      heart.innerHTML = '♥';
-      heart.style.left = Math.random() * 100 + '%';
-      heart.style.animationDelay = Math.random() * 7 + 's';
-      heart.style.fontSize = (14 + Math.random() * 24) + 'px';
-      bg.appendChild(heart);
-    }
+    setInterval(createHeart, 300);
   </script>
 
 </body>
